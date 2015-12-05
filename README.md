@@ -10,10 +10,11 @@ Project Management
 
 1. Requirement Management
 -------------------------
-- [ ] Application should be available online at http://magazine.5000s.org.
+- [x] Application should be available online at http://magazine.5000s.org.
 - [ ] Application must be secured authentication for each members.
 - [ ] Application should support administrator tasks.
-- [ ] Application should support user profile.
+- [ ] Application should provide user profile.
+- [ ] Application should provide printing label.
 
 2. Architecture Design
 ----------------------
