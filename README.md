@@ -13,6 +13,7 @@ Project Management
 - [ ] Application should be available online at http://magazine.5000s.org.
 - [ ] Application must be secured authentication for each members.
 - [ ] Application should support administrator tasks.
+- [ ] Application should support user profile.
 
 2. Architecture Design
 ----------------------
