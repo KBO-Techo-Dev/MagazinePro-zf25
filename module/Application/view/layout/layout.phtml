@@ -27,7 +27,6 @@
             ->offsetSetStylesheet(4, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.structure.css')) 
             ->offsetSetStylesheet(5, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.theme.css')) 
             ->offsetSetStylesheet(6, $this->basePath('assets/custom/css/kboapp-style.css'))
-            ->offsetSetStylesheet(7, $this->basePath('assets/custom/css/kboapp-footer.css'))
         ?>
 
     </head>
@@ -67,11 +66,9 @@
         </div> <!-- /container -->
 
 	<!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <!-- <p class="pull-right"><a href="#"><img src="<?php echo $this->basePath('assets/images/5000s-backtotop.png') ?>" alt="" title="Back to Top">Back to Top</a></p> -->
-                <p class="text-muted">&copy; <?php echo sprintf($this->translate('2012 - %s Knowing Buddha Organization'), date('Y')) ?></p>
-            </div>
+        <footer class="container-fluid text-muted text-center">
+            <!-- <p class="pull-right"><a href="#"><img src="<?php echo $this->basePath('assets/images/5000s-backtotop.png') ?>" alt="" title="Back to Top">Back to Top</a></p> -->
+            <p>&copy; <?php echo sprintf($this->translate('2012 - %s Knowing Buddha Organization'), date('Y')) ?></p>
         </footer>
 		
 	<!-- Inline JavaScript -->		

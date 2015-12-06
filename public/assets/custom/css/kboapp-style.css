@@ -41,10 +41,23 @@ div.container a.kboapp-brand {
 }
 
 .navbar-inverse .navbar-toggle .icon-bar {
-  background-color: #68b604; /* Green */
+    background-color: #68b604; /* Green */
 }
 
 .navbar-inverse .navbar-toggle:hover .icon-bar,
 .navbar-inverse .navbar-toggle:focus .icon-bar {
-  background-color: #fff;
+    background-color: #fff;
 }
+
+footer {  
+    width: 100%;
+    position: absolute;
+    display: block;
+    padding: 20px 15px;
+    background-color: #340000;
+}
+
+p{
+    margin: 0px;
+}
+
