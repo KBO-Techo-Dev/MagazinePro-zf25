@@ -1,10 +1,13 @@
+/* Custom Styles by KBO IT Development
+--------------------------------------- */
 body {
     padding-top: 60px;
     padding-bottom: 40px;
 }
 
-.zf-green {
-    color: #68b604;
+/* Revised by KBO IT Development */
+.kboapp-color {
+    color: #68b604; /* Green */
 }
 
 .btn-success {
@@ -30,8 +33,18 @@ body {
   background-color: #57a900;
 }
 
-div.container a.brand {
+/* Revised By KBO IT Development */
+div.container a.kboapp-brand {
     background: url("../images/5000s-logo.png") no-repeat scroll 0 10px transparent;
     margin-left: 0;
     padding: 8px 20px 12px 40px;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #68b604; /* Green */
+}
+
+.navbar-inverse .navbar-toggle:hover .icon-bar,
+.navbar-inverse .navbar-toggle:focus .icon-bar {
+  background-color: #fff;
 }

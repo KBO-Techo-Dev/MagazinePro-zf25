@@ -17,31 +17,22 @@
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ?>
     
-        <!-- Le styles -->
+        <!-- Favicon and CSS -->
         <?php echo $this->headLink(array(
-                'rel'   => 'shortcut icon',
-                'type'  => 'image/vnd.microsoft.icon',
-                'href'  => $this->basePath('assets/images/5000s-favicon.png')))
-            ->prependStylesheet($this->basePath('assets/css/sticky-footer.css'))
-            ->prependStylesheet($this->basePath('assets/css/style.css'))
-            ->prependStylesheet($this->basePath('assets/jquery-ui/1.11.4/jquery-ui.theme.css'))                
-            ->prependStylesheet($this->basePath('assets/jquery-ui/1.11.4/jquery-ui.structure.css'))                
-            ->prependStylesheet($this->basePath('assets/jquery-ui/1.11.4/jquery-ui.css'))
-            ->prependStylesheet($this->basePath('assets/bootstrap/3.3.6/css/bootstrap-theme.min.css'))
-            ->prependStylesheet($this->basePath('assets/bootstrap/3.3.6/css/bootstrap.min.css'))                
-        ?>
-
-        <!-- Scripts -->
-        <?php echo $this->headScript()
-            ->prependFile($this->basePath('assets/bootstrap/3.3.6/js/bootstrap.min.js'))
-            ->prependFile($this->basePath('assets/jquery-ui/1.11.4/jquery-ui.min.js'))                
-            ->prependFile($this->basePath('assets/jquery/2.1.4/jquery.min.js'))
-            ->prependFile($this->basePath('assets/js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath('assets/js/html5shiv.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+            'rel'   => 'icon',
+            'href'  => $this->basePath('assets/images/5000s-favicon.png')))
+            ->offsetSetStylesheet(1, $this->basePath('assets/bootstrap/3.3.6/css/bootstrap.min.css')) 
+            ->offsetSetStylesheet(2, $this->basePath('assets/bootstrap/3.3.6/css/bootstrap-theme.min.css'))			
+            ->offsetSetStylesheet(3, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.css'))
+            ->offsetSetStylesheet(4, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.structure.css')) 
+            ->offsetSetStylesheet(5, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.theme.css')) 
+            ->offsetSetStylesheet(6, $this->basePath('assets/custom/css/kboapp-style.css'))
+            ->offsetSetStylesheet(7, $this->basePath('assets/custom/css/kboapp-footer.css'))
         ?>
 
     </head>
     <body>
+	<!-- Navigation Bar -->
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -52,10 +43,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="<?php echo $this->url('home') ?>">
-                        <img src="<?php echo $this->basePath('assets/images/5000s-logo.png') ?>" alt="5000s.org Magazine"/>
-                    </a>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>">
-                        <?php echo $this->translate('5000s.org Magazine') ?>
+                        <span class="glyphicon glyphicon-home kboapp-color" aria-hidden="true"></span>
+                        &nbsp;<?php echo $this->translate('5000s.org Magazine') ?>
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
@@ -68,20 +57,37 @@
                         </div>
                         <button type="submit" class="btn btn-success">Sign in</button>
                     </form>
-                </div><!--/.navbar-collapse -->
+                </div><!-- /.navbar-collapse -->
             </div>
         </nav>        
 
+	<!-- Content -->
         <div class="container">
             <?php echo $this->content; ?>
         </div> <!-- /container -->
 
+	<!-- Footer -->
         <footer class="footer">
             <div class="container">
                 <!-- <p class="pull-right"><a href="#"><img src="<?php echo $this->basePath('assets/images/5000s-backtotop.png') ?>" alt="" title="Back to Top">Back to Top</a></p> -->
                 <p class="text-muted">&copy; <?php echo sprintf($this->translate('2012 - %s Knowing Buddha Organization'), date('Y')) ?></p>
             </div>
         </footer>
+		
+	<!-- Inline JavaScript -->		
         <?php echo $this->inlineScript() ?>
+
+	<!-- Bootstrap core JavaScript
+	==================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <?php echo $this->headScript()
+            ->offsetSetFile(1, $this->basePath('assets/jquery/2.1.4/jquery.min.js'))
+            ->offsetSetFile(2, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.min.js'))
+            ->offsetSetFile(3, $this->basePath('assets/bootstrap/3.3.6/js/bootstrap.min.js'))
+            ->offsetSetFile(101, $this->basePath('assets/html5shiv/3.7.3/html5shiv.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->offsetSetFile(102, $this->basePath('assets/respond/1.4.2/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))                
+        ?>
+		
     </body>
 </html>

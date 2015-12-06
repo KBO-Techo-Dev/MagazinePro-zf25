@@ -1,5 +1,5 @@
-/* Sticky footer styles
--------------------------------------------------- */
+/* Custom Sticky Footer Styles by KBO IT Development
+----------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
@@ -19,7 +19,7 @@ body {
 }
 
 /* Custom page CSS
--------------------------------------------------- */
+----------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
 .footer .container {
@@ -27,10 +27,7 @@ body {
   max-width: 680px;
   padding: 0 15px;
 }
-.footer .container .text-muted {
-  margin: 20px 0;
-}
-
+.footer .container .text-muted,
 .footer .container .pull-right {
   margin: 20px 0;
 }
