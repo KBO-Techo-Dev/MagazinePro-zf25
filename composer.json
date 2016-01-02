@@ -1,6 +1,6 @@
 {
-    "name": "magazinepro/magazinepro-application",
-    "description": "MagazinePro Application for ZF2",
+    "name": "5000sMagazine/5000sMagazine-Application",
+    "description": "5000s Magazine Application for ZF2",
     "license": "BSD-3-Clause",
     "keywords": [
         "framework",
@@ -8,7 +8,10 @@
     ],
     "homepage": "http://framework.zend.com/",
     "require": {
-        "php": ">=5.3.3",
-        "zendframework/zendframework": "~2.4"
+        "php": ">=5.4",
+        "zendframework/zendframework": "~2.5",
+        "coolcsn/csn-user": "dev-master",
+        "coolcsn/csn-authorization": "dev-master",
+        "zf-commons/zfc-user": "dev-master"
     }
 }

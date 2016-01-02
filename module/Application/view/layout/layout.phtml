@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <!-- Title -->
-        <?php echo $this->headTitle($this->translate('5000s.org Magazine'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle($this->translate('5000s Magazine'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <!-- Meta -->
         <?php echo $this->headMeta()
@@ -26,65 +26,130 @@
             ->offsetSetStylesheet(3, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.css'))
             ->offsetSetStylesheet(4, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.structure.css')) 
             ->offsetSetStylesheet(5, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.theme.css')) 
-            ->offsetSetStylesheet(6, $this->basePath('assets/custom/css/kboapp-style.css'))
+            ->offsetSetStylesheet(6, $this->basePath('assets/custom/css/style.css'))
         ?>
 
     </head>
-    <body>
-	<!-- Navigation Bar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
+    <body id="id_StartPage">
+		<!-- Navigation Bar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#id_NavBar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="<?php echo $this->url('home') ?>">
-                        <span class="glyphicon glyphicon-home kboapp-color" aria-hidden="true"></span>
-                        &nbsp;<?php echo $this->translate('5000s.org Magazine') ?>
+                        <span class="glyphicon glyphicon-home theme-color"></span>
+                        &nbsp;<?php echo $this->translate('5000s Magazine') ?>
                     </a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Sign in</button>
-                    </form>
-                </div><!-- /.navbar-collapse -->
-            </div>
-        </nav>        
-
-	<!-- Content -->
+                </div><!-- navbar-header -->	
+                <div id="id_NavBar" class="navbar-collapse collapse">
+                    <a class="navbar-brand pull-right" href="<?php echo $this->url('user-index') ?>">
+						<span class="glyphicon glyphicon-log-in"></span>
+						&nbsp;<?php echo $this->translate('Sign in') ?>
+					</a>
+                </div><!-- navbar-collapse -->				
+			</div><!-- container-fluid -->
+        </nav> 
+		
+		<!-- Content -->
         <div class="container">
             <?php echo $this->content; ?>
-        </div> <!-- /container -->
-
-	<!-- Footer -->
-        <footer class="container-fluid text-muted text-center">
-            <!-- <p class="pull-right"><a href="#"><img src="<?php echo $this->basePath('assets/images/5000s-backtotop.png') ?>" alt="" title="Back to Top">Back to Top</a></p> -->
-            <p>&copy; <?php echo sprintf($this->translate('2012 - %s Knowing Buddha Organization'), date('Y')) ?></p>
-        </footer>
+        </div>
 		
-	<!-- Inline JavaScript -->		
+        <!-- Container (Contact Section) -->	
+        <!-- -->
+        <div id="id_Contact" class="container-fluid bg-grey">
+            <h4 class="text-center"><span class="glyphicon glyphicon-globe theme-color"></span> CONTACT US</h4>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-map-marker theme-color"></span> <strong>CONTACT</strong></div>
+                        <div class="panel-body">
+                            <p><span class="glyphicon glyphicon-home theme-color"></span> Knowing Buddha Foundation</p>
+                            <p><span class="glyphicon glyphicon-home theme-color"></span> 3/11-12 Soi AnumanRachathon Decho Road,</p>
+                            <p><span class="glyphicon glyphicon-home theme-color"></span> Bangrak, Bangkok 10500. Thailand</p>          
+                            <p><span class="glyphicon glyphicon-phone theme-color"></span> +662-6347461-3</p>
+                            <p><span class="glyphicon glyphicon-envelope theme-color"></span> info@5000s.org</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-pencil theme-color"></span> <strong>EMAIL NEWSLETTER</strong></div>
+                        <div class="panel-body">
+                            <p>Sign up to receive email updates.</p>
+                            <div class="row">
+                                <div class="col-lg-8 form-group">
+                                    <input class="form-control" placeholder="Email Address" type="email" required>
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <button class="btn btn-success pull-right" type="button">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-edit theme-color"></span> <strong>YOUR MESSAGE</strong></div>
+                        <div class="panel-body">                     
+                            <div class="row">
+                                <div class="col-lg-6 form-group">
+                                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                                </div>
+                            </div>
+                            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="4"></textarea><br>
+                            <div class="row">
+                                <div class="col-sm-12 form-group">
+                                    <button class="btn btn-success pull-right" type="submit">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>	
+	
+		<!-- Footer -->
+        <!-- Copyright -->
+        <footer class="container-fluid text-center">
+            <a href="#" title="To Top">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </a>
+            <!--
+            <a href="#" title="To Top">
+                <img src="<?php echo $this->basePath('assets/images/5000s-backtotop.png') ?>" alt="" title="To Top">
+            </a>
+            -->    
+            <p class="text-muted">
+                &copy; <?php echo sprintf($this->translate('2012 - %s %sKnowing Buddha Organization%s'),
+                        date('Y'),
+                        '<a href="http://www.knowingbuddha.org" target="_blank" />',
+                        '</a>') ?>
+            </p>
+        </footer>	
+	
+		<!-- Inline JavaScript -->
         <?php echo $this->inlineScript() ?>
 
-	<!-- Bootstrap core JavaScript
-	==================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- Bootstrap core JavaScript
+		==================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <?php echo $this->headScript()
             ->offsetSetFile(1, $this->basePath('assets/jquery/2.1.4/jquery.min.js'))
             ->offsetSetFile(2, $this->basePath('assets/jquery-ui/1.11.4/jquery-ui.min.js'))
             ->offsetSetFile(3, $this->basePath('assets/bootstrap/3.3.6/js/bootstrap.min.js'))
             ->offsetSetFile(101, $this->basePath('assets/html5shiv/3.7.3/html5shiv.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
             ->offsetSetFile(102, $this->basePath('assets/respond/1.4.2/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))                
-        ?>
-		
-    </body>
+        ?>	
+	
+    </body>		
 </html>
