@@ -9,9 +9,6 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.4",
-        "zendframework/zendframework": "~2.5",
-        "coolcsn/csn-user": "dev-master",
-        "coolcsn/csn-authorization": "dev-master",
-        "zf-commons/zfc-user": "dev-master"
+        "zendframework/zendframework": "~2.5"
     }
 }
