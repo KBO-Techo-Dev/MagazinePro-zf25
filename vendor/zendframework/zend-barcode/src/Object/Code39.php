@@ -18,7 +18,7 @@ class Code39 extends AbstractObject
      * Coding map
      * @var array
      */
-    protected $codingMap = [
+    protected $codingMap = array(
         '0' => '000110100',
         '1' => '100100001',
         '2' => '001100001',
@@ -63,7 +63,7 @@ class Code39 extends AbstractObject
         '+' => '010001010',
         '%' => '000101010',
         '*' => '010010100',
-    ];
+    );
 
     /**
      * Partial check of Code39 barcode
@@ -127,17 +127,17 @@ class Code39 extends AbstractObject
     protected function prepareBarcode()
     {
         $text         = str_split($this->getText());
-        $barcodeTable = [];
+        $barcodeTable = array();
         foreach ($text as $char) {
             $barcodeChar = str_split($this->codingMap[$char]);
             $visible     = true;
             foreach ($barcodeChar as $c) {
                 /* visible, width, top, length */
                 $width          = $c ? $this->barThickWidth : $this->barThinWidth;
-                $barcodeTable[] = [(int) $visible, $width, 0, 1];
+                $barcodeTable[] = array((int) $visible, $width, 0, 1);
                 $visible = ! $visible;
             }
-            $barcodeTable[] = [0, $this->barThinWidth];
+            $barcodeTable[] = array(0, $this->barThinWidth);
         }
         return $barcodeTable;
     }

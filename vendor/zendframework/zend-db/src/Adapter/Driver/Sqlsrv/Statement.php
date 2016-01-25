@@ -45,7 +45,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     /**
      * @var array
      */
-    protected $parameterReferences = [];
+    protected $parameterReferences = array();
 
     /**
      * @var ParameterContainer
@@ -66,12 +66,12 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     /**
      * @var array
      */
-    protected $prepareParams = [];
+    protected $prepareParams = array();
 
     /**
      * @var array
      */
-    protected $prepareOptions = [];
+    protected $prepareOptions = array();
 
     /**
      * Set driver
@@ -196,7 +196,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @throws Exception\RuntimeException
      * @return Statement
      */
-    public function prepare($sql = null, array $options = [])
+    public function prepare($sql = null, array $options = array())
     {
         if ($this->isPrepared) {
             throw new Exception\RuntimeException('Already prepared');
@@ -207,7 +207,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
         $pRef = &$this->parameterReferences;
         for ($position = 0, $count = substr_count($sql, '?'); $position < $count; $position++) {
             if (!isset($this->prepareParams[$position])) {
-                $pRef[$position] = ['', SQLSRV_PARAM_IN, null, null];
+                $pRef[$position] = array('', SQLSRV_PARAM_IN, null, null);
             } else {
                 $pRef[$position] = &$this->prepareParams[$position];
             }

@@ -25,7 +25,7 @@ class MemcachedResourceManager
      *
      * @var array
      */
-    protected $resources = [];
+    protected $resources = array();
 
     /**
      * Get servers
@@ -107,11 +107,11 @@ class MemcachedResourceManager
             throw new Exception\InvalidArgumentException('Missing required server host');
         }
 
-        $server = [
+        $server = array(
             'host'   => $host,
             'port'   => $port,
             'weight' => $weight,
-        ];
+        );
     }
 
     /**
@@ -158,9 +158,9 @@ class MemcachedResourceManager
         }
 
         // merge and add servers (with persistence id servers could be added already)
-        $servers = array_udiff($resource['servers'], $memc->getServerList(), [$this, 'compareServers']);
+        $servers = array_udiff($resource['servers'], $memc->getServerList(), array($this, 'compareServers'));
         if ($servers) {
-            $memc->addServers(array_values(array_map('array_values', $servers)));
+            $memc->addServers($servers);
         }
 
         // buffer and return
@@ -188,11 +188,11 @@ class MemcachedResourceManager
                 );
             }
 
-            $resource = array_merge([
+            $resource = array_merge(array(
                 'persistent_id' => '',
-                'lib_options'   => [],
-                'servers'       => [],
-            ], $resource);
+                'lib_options'   => array(),
+                'servers'       => array(),
+            ), $resource);
 
             // normalize and validate params
             $this->normalizePersistentId($resource['persistent_id']);
@@ -227,9 +227,9 @@ class MemcachedResourceManager
     public function setPersistentId($id, $persistentId)
     {
         if (!$this->hasResource($id)) {
-            return $this->setResource($id, [
+            return $this->setResource($id, array(
                 'persistent_id' => $persistentId
-            ]);
+            ));
         }
 
         $resource = & $this->resources[$id];
@@ -289,9 +289,9 @@ class MemcachedResourceManager
     public function setLibOptions($id, array $libOptions)
     {
         if (!$this->hasResource($id)) {
-            return $this->setResource($id, [
+            return $this->setResource($id, array(
                 'lib_options' => $libOptions
-            ]);
+            ));
         }
 
         $this->normalizeLibOptions($libOptions);
@@ -328,7 +328,7 @@ class MemcachedResourceManager
         $resource = & $this->resources[$id];
 
         if ($resource instanceof MemcachedResource) {
-            $libOptions = [];
+            $libOptions = array();
             $reflection = new ReflectionClass('Memcached');
             $constants  = $reflection->getConstants();
             foreach ($constants as $constName => $constValue) {
@@ -351,7 +351,7 @@ class MemcachedResourceManager
      */
     public function setLibOption($id, $key, $value)
     {
-        return $this->setLibOptions($id, [$key => $value]);
+        return $this->setLibOptions($id, array($key => $value));
     }
 
     /**
@@ -392,7 +392,7 @@ class MemcachedResourceManager
             );
         }
 
-        $result = [];
+        $result = array();
         foreach ($libOptions as $key => $value) {
             $this->normalizeLibOptionKey($key);
             $result[$key] = $value;
@@ -411,7 +411,7 @@ class MemcachedResourceManager
     {
         // convert option name into it's constant value
         if (is_string($key)) {
-            $const = 'Memcached::OPT_' . str_replace([' ', '-'], '_', strtoupper($key));
+            $const = 'Memcached::OPT_' . str_replace(array(' ', '-'), '_', strtoupper($key));
             if (!defined($const)) {
                 throw new Exception\InvalidArgumentException("Unknown libmemcached option '{$key}' ({$const})");
             }
@@ -437,9 +437,9 @@ class MemcachedResourceManager
     public function setServers($id, $servers)
     {
         if (!$this->hasResource($id)) {
-            return $this->setResource($id, [
+            return $this->setResource($id, array(
                 'servers' => $servers
-            ]);
+            ));
         }
 
         $this->normalizeServers($servers);
@@ -447,7 +447,7 @@ class MemcachedResourceManager
         $resource = & $this->resources[$id];
         if ($resource instanceof MemcachedResource) {
             // don't add servers twice
-            $servers = array_udiff($servers, $resource->getServerList(), [$this, 'compareServers']);
+            $servers = array_udiff($servers, $resource->getServerList(), array($this, 'compareServers'));
             if ($servers) {
                 $resource->addServers($servers);
             }
@@ -468,9 +468,9 @@ class MemcachedResourceManager
     public function addServers($id, $servers)
     {
         if (!$this->hasResource($id)) {
-            return $this->setResource($id, [
+            return $this->setResource($id, array(
                 'servers' => $servers
-            ]);
+            ));
         }
 
         $this->normalizeServers($servers);
@@ -478,7 +478,7 @@ class MemcachedResourceManager
         $resource = & $this->resources[$id];
         if ($resource instanceof MemcachedResource) {
             // don't add servers twice
-            $servers = array_udiff($servers, $resource->getServerList(), [$this, 'compareServers']);
+            $servers = array_udiff($servers, $resource->getServerList(), array($this, 'compareServers'));
             if ($servers) {
                 $resource->addServers($servers);
             }
@@ -486,7 +486,7 @@ class MemcachedResourceManager
             // don't add servers twice
             $resource['servers'] = array_merge(
                 $resource['servers'],
-                array_udiff($servers, $resource['servers'], [$this, 'compareServers'])
+                array_udiff($servers, $resource['servers'], array($this, 'compareServers'))
             );
         }
 
@@ -502,7 +502,7 @@ class MemcachedResourceManager
      */
     public function addServer($id, $server)
     {
-        return $this->addServers($id, [$server]);
+        return $this->addServers($id, array($server));
     }
 
     /**
@@ -518,7 +518,7 @@ class MemcachedResourceManager
             $servers = explode(',', $servers);
         }
 
-        $result = [];
+        $result = array();
         foreach ($servers as $server) {
             $this->normalizeServer($server);
             $result[$server['host'] . ':' . $server['port']] = $server;

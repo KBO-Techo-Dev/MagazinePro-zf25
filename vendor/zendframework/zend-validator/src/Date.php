@@ -10,7 +10,7 @@
 namespace Zend\Validator;
 
 use DateTime;
-use DateTimeImmutable;
+use DateTimeInterface;
 use Traversable;
 
 /**
@@ -38,18 +38,18 @@ class Date extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
+    protected $messageTemplates = array(
         self::INVALID      => "Invalid type given. String, integer, array or DateTime expected",
         self::INVALID_DATE => "The input does not appear to be a valid date",
         self::FALSEFORMAT  => "The input does not fit the date format '%format%'",
-    ];
+    );
 
     /**
      * @var array
      */
-    protected $messageVariables = [
+    protected $messageVariables = array(
         'format' => 'format',
-    ];
+    );
 
     /**
      * @var string
@@ -61,7 +61,7 @@ class Date extends AbstractValidator
      *
      * @param  string|array|Traversable $options OPTIONAL
      */
-    public function __construct($options = [])
+    public function __construct($options = array())
     {
         if ($options instanceof Traversable) {
             $options = iterator_to_array($options);
@@ -127,12 +127,13 @@ class Date extends AbstractValidator
      */
     protected function convertToDateTime($param, $addErrors = true)
     {
-        if ($param instanceof DateTime || $param instanceof DateTimeImmutable) {
+        // @TODO: when minimum dependency will be PHP 5.5, we can only keep check against DateTimeInterface
+        if ($param instanceof DateTime || $param instanceof DateTimeInterface) {
             return $param;
         }
 
         $type = gettype($param);
-        if (!in_array($type, ['string', 'integer', 'double', 'array'])) {
+        if (!in_array($type, array('string', 'integer', 'double', 'array'))) {
             if ($addErrors) {
                 $this->error(self::INVALID);
             }

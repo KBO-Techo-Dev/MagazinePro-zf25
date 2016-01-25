@@ -28,33 +28,33 @@ class ParameterContainer implements Iterator, ArrayAccess, Countable
      *
      * @var array
      */
-    protected $data = [];
+    protected $data = array();
 
     /**
      * @var array
      */
-    protected $positions = [];
+    protected $positions = array();
 
     /**
      * Errata
      *
      * @var array
      */
-    protected $errata = [];
+    protected $errata = array();
 
     /**
      * Max length
      *
      * @var array
      */
-    protected $maxLength = [];
+    protected $maxLength = array();
 
     /**
      * Constructor
      *
      * @param array $data
      */
-    public function __construct(array $data = [])
+    public function __construct(array $data = array())
     {
         if ($data) {
             $this->setFromArray($data);

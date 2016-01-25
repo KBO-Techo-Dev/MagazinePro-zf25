@@ -34,7 +34,7 @@ abstract class AbstractConstraint implements ConstraintInterface
     /**
      * @var array
      */
-    protected $columns = [];
+    protected $columns = array();
 
     /**
      * @param null|string|array $columns
@@ -102,8 +102,8 @@ abstract class AbstractConstraint implements ConstraintInterface
     public function getExpressionData()
     {
         $colCount = count($this->columns);
-        $newSpecTypes = [];
-        $values = [];
+        $newSpecTypes = array();
+        $values = array();
         $newSpec = '';
 
         if ($this->name) {
@@ -121,10 +121,10 @@ abstract class AbstractConstraint implements ConstraintInterface
             $newSpec .= sprintf($this->columnSpecification, implode(', ', $newSpecParts));
         }
 
-        return [[
+        return array(array(
             $newSpec,
             $values,
             $newSpecTypes,
-        ]];
+        ));
     }
 }

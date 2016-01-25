@@ -17,7 +17,7 @@ class Profiler implements ProfilerInterface
     /**
      * @var array
      */
-    protected $profiles = [];
+    protected $profiles = array();
 
     /**
      * @var null
@@ -31,13 +31,13 @@ class Profiler implements ProfilerInterface
      */
     public function profilerStart($target)
     {
-        $profileInformation = [
+        $profileInformation = array(
             'sql' => '',
             'parameters' => null,
             'start' => microtime(true),
             'end' => null,
             'elapse' => null
-        ];
+        );
         if ($target instanceof StatementContainerInterface) {
             $profileInformation['sql'] = $target->getSql();
             $profileInformation['parameters'] = clone $target->getParameterContainer();

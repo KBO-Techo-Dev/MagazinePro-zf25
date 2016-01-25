@@ -71,7 +71,7 @@ class Result
      * @param  mixed   $identity
      * @param  array   $messages
      */
-    public function __construct($code, $identity, array $messages = [])
+    public function __construct($code, $identity, array $messages = array())
     {
         $this->code     = (int) $code;
         $this->identity = $identity;

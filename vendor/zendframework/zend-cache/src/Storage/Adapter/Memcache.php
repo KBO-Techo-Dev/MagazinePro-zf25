@@ -244,12 +244,12 @@ class Memcache extends AbstractAdapter implements
 
         $result = $memc->get($normalizedKeys);
         if ($result === false) {
-            return [];
+            return array();
         }
 
         // remove namespace prefix from result
         if ($this->namespacePrefix !== '') {
-            $tmp            = [];
+            $tmp            = array();
             $nsPrefixLength = strlen($this->namespacePrefix);
             foreach ($result as $internalKey => & $value) {
                 $tmp[substr($internalKey, $nsPrefixLength)] = & $value;
@@ -291,7 +291,7 @@ class Memcache extends AbstractAdapter implements
 
         $result = $memc->get($normalizedKeys);
         if ($result === false) {
-            return [];
+            return array();
         }
 
         // Convert to a single list
@@ -325,21 +325,21 @@ class Memcache extends AbstractAdapter implements
 
         $result = $memc->get($normalizedKeys);
         if ($result === false) {
-            return [];
+            return array();
         }
 
         // remove namespace prefix and use an empty array as metadata
         if ($this->namespacePrefix === '') {
             foreach ($result as & $value) {
-                $value = [];
+                $value = array();
             }
             return $result;
         }
 
-        $final          = [];
+        $final          = array();
         $nsPrefixLength = strlen($this->namespacePrefix);
         foreach (array_keys($result) as $internalKey) {
-            $final[substr($internalKey, $nsPrefixLength)] = [];
+            $final[substr($internalKey, $nsPrefixLength)] = array();
         }
         return $final;
     }
@@ -495,7 +495,7 @@ class Memcache extends AbstractAdapter implements
             //
             // This effectively removes support for `boolean` types since
             // "not found" return values are === false.
-            $supportedDatatypes = [
+            $supportedDatatypes = array(
                 'NULL'     => true,
                 'boolean'  => false,
                 'integer'  => true,
@@ -504,7 +504,7 @@ class Memcache extends AbstractAdapter implements
                 'array'    => true,
                 'object'   => 'object',
                 'resource' => false,
-            ];
+            );
         } else {
             // In stable 2.x ext/memcache versions, scalar data types are
             // converted to strings and must be manually cast back to original
@@ -514,7 +514,7 @@ class Memcache extends AbstractAdapter implements
             // was previously: (bool)true, (int)1, or (string)"1".
             // Similarly, the saved value: (string)""
             // might have previously been: (bool)false or (string)""
-            $supportedDatatypes = [
+            $supportedDatatypes = array(
                 'NULL'     => true,
                 'boolean'  => 'boolean',
                 'integer'  => 'integer',
@@ -523,16 +523,16 @@ class Memcache extends AbstractAdapter implements
                 'array'    => true,
                 'object'   => 'object',
                 'resource' => false,
-            ];
+            );
         }
 
         $this->capabilityMarker = new stdClass();
         $this->capabilities     = new Capabilities(
             $this,
             $this->capabilityMarker,
-            [
+            array(
                 'supportedDatatypes' => $supportedDatatypes,
-                'supportedMetadata'  => [],
+                'supportedMetadata'  => array(),
                 'minTtl'             => 1,
                 'maxTtl'             => 0,
                 'staticTtl'          => true,
@@ -541,7 +541,7 @@ class Memcache extends AbstractAdapter implements
                 'expiredRead'        => false,
                 'maxKeyLength'       => 255,
                 'namespaceIsPrefix'  => true,
-            ]
+            )
         );
 
         return $this->capabilities;

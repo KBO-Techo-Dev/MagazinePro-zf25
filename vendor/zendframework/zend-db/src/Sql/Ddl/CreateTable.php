@@ -21,12 +21,12 @@ class CreateTable extends AbstractSql implements SqlInterface
     /**
      * @var Column\ColumnInterface[]
      */
-    protected $columns = [];
+    protected $columns = array();
 
     /**
      * @var string[]
      */
-    protected $constraints = [];
+    protected $constraints = array();
 
     /**
      * @var bool
@@ -36,21 +36,21 @@ class CreateTable extends AbstractSql implements SqlInterface
     /**
      * {@inheritDoc}
      */
-    protected $specifications = [
+    protected $specifications = array(
         self::TABLE => 'CREATE %1$sTABLE %2$s (',
-        self::COLUMNS  => [
-            "\n    %1\$s" => [
-                [1 => '%1$s', 'combinedby' => ",\n    "]
-            ]
-        ],
+        self::COLUMNS  => array(
+            "\n    %1\$s" => array(
+                array(1 => '%1$s', 'combinedby' => ",\n    ")
+            )
+        ),
         'combinedBy' => ",",
-        self::CONSTRAINTS => [
-            "\n    %1\$s" => [
-                [1 => '%1$s', 'combinedby' => ",\n    "]
-            ]
-        ],
+        self::CONSTRAINTS => array(
+            "\n    %1\$s" => array(
+                array(1 => '%1$s', 'combinedby' => ",\n    ")
+            )
+        ),
         'statementEnd' => '%1$s',
-    ];
+    );
 
     /**
      * @var string
@@ -121,11 +121,11 @@ class CreateTable extends AbstractSql implements SqlInterface
      */
     public function getRawState($key = null)
     {
-        $rawState = [
+        $rawState = array(
             self::COLUMNS     => $this->columns,
             self::CONSTRAINTS => $this->constraints,
             self::TABLE       => $this->table,
-        ];
+        );
 
         return (isset($key) && array_key_exists($key, $rawState)) ? $rawState[$key] : $rawState;
     }
@@ -137,10 +137,10 @@ class CreateTable extends AbstractSql implements SqlInterface
      */
     protected function processTable(PlatformInterface $adapterPlatform = null)
     {
-        return [
+        return array(
             $this->isTemporary ? 'TEMPORARY ' : '',
             $adapterPlatform->quoteIdentifier($this->table),
-        ];
+        );
     }
 
     /**
@@ -154,13 +154,13 @@ class CreateTable extends AbstractSql implements SqlInterface
             return;
         }
 
-        $sqls = [];
+        $sqls = array();
 
         foreach ($this->columns as $column) {
             $sqls[] = $this->processExpression($column, $adapterPlatform);
         }
 
-        return [$sqls];
+        return array($sqls);
     }
 
     /**
@@ -186,13 +186,13 @@ class CreateTable extends AbstractSql implements SqlInterface
             return;
         }
 
-        $sqls = [];
+        $sqls = array();
 
         foreach ($this->constraints as $constraint) {
             $sqls[] = $this->processExpression($constraint, $adapterPlatform);
         }
 
-        return [$sqls];
+        return array($sqls);
     }
 
     /**
@@ -202,6 +202,6 @@ class CreateTable extends AbstractSql implements SqlInterface
      */
     protected function processStatementEnd(PlatformInterface $adapterPlatform = null)
     {
-        return ["\n)"];
+        return array("\n)");
     }
 }

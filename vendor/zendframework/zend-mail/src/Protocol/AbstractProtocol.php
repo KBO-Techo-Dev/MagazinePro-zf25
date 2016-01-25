@@ -74,7 +74,7 @@ abstract class AbstractProtocol
      * Log of mail requests and server responses for a session
      * @var array
      */
-    private $log = [];
+    private $log = array();
 
     /**
      * Constructor.
@@ -168,7 +168,7 @@ abstract class AbstractProtocol
      */
     public function resetLog()
     {
-        $this->log = [];
+        $this->log = array();
     }
 
     /**
@@ -305,11 +305,11 @@ abstract class AbstractProtocol
      */
     protected function _expect($code, $timeout = null)
     {
-        $this->response = [];
+        $this->response = array();
         $errMsg = '';
 
         if (!is_array($code)) {
-            $code = [$code];
+            $code = array($code);
         }
 
         do {

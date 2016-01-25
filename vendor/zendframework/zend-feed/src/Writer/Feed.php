@@ -21,7 +21,7 @@ class Feed extends AbstractFeed implements Iterator, Countable
      *
      * @var array
      */
-    protected $entries = [];
+    protected $entries = array();
 
     /**
      * A pointer for the iterator to keep track of the entries array
@@ -137,7 +137,7 @@ class Feed extends AbstractFeed implements Iterator, Countable
          * Could do with some improvement for performance perhaps
          */
         $timestamp = time();
-        $entries = [];
+        $entries = array();
         foreach ($this->entries as $entry) {
             if ($entry->getDateModified()) {
                 $timestamp = (int) $entry->getDateModified()->getTimestamp();

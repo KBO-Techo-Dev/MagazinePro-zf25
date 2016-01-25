@@ -22,7 +22,7 @@
         "psr-4": { "Symfony\\Polyfill\\Mbstring\\": "" },
         "files": [ "bootstrap.php" ]
     },
-    "suggest": {
+    "suggests": {
         "ext-mbstring": "For best performance"
     },
     "minimum-stability": "dev",

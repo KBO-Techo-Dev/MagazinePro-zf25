@@ -29,16 +29,16 @@ class Insert extends AbstractPreparableSql
     /**
      * @var array Specification array
      */
-    protected $specifications = [
+    protected $specifications = array(
         self::SPECIFICATION_INSERT => 'INSERT INTO %1$s (%2$s) VALUES (%3$s)',
         self::SPECIFICATION_SELECT => 'INSERT INTO %1$s %2$s %3$s',
-    ];
+    );
 
     /**
      * @var string|TableIdentifier
      */
     protected $table            = null;
-    protected $columns          = [];
+    protected $columns          = array();
 
     /**
      * @var array|Select
@@ -141,11 +141,11 @@ class Insert extends AbstractPreparableSql
      */
     public function getRawState($key = null)
     {
-        $rawState = [
+        $rawState = array(
             'table' => $this->table,
             'columns' => array_keys($this->columns),
             'values' => array_values($this->columns)
-        ];
+        );
         return (isset($key) && array_key_exists($key, $rawState)) ? $rawState[$key] : $rawState;
     }
 
@@ -158,8 +158,8 @@ class Insert extends AbstractPreparableSql
             throw new Exception\InvalidArgumentException('values or select should be present');
         }
 
-        $columns = [];
-        $values  = [];
+        $columns = array();
+        $values  = array();
         foreach ($this->columns as $column=>$value) {
             $columns[] = $platform->quoteIdentifier($column);
             if (is_scalar($value) && $parameterContainer) {
@@ -189,7 +189,7 @@ class Insert extends AbstractPreparableSql
         }
         $selectSql = $this->processSubSelect($this->select, $platform, $driver, $parameterContainer);
 
-        $columns = array_map([$platform, 'quoteIdentifier'], array_keys($this->columns));
+        $columns = array_map(array($platform, 'quoteIdentifier'), array_keys($this->columns));
         $columns = implode(', ', $columns);
 
         return sprintf(

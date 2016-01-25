@@ -67,10 +67,12 @@ class OracleRowCounter extends AbstractFeature
      */
     public function getRowCountClosure($context)
     {
-        return function () use ($context) {
+        $oracleRowCounter = $this;
+        return function () use ($oracleRowCounter, $context) {
+            /** @var $oracleRowCounter OracleRowCounter */
             return ($context instanceof Pdo\Statement)
-                ? $this->getCountForStatement($context)
-                : $this->getCountForSql($context);
+                ? $oracleRowCounter->getCountForStatement($context)
+                : $oracleRowCounter->getCountForSql($context);
         };
     }
 }

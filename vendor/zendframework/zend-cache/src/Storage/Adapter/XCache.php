@@ -33,7 +33,7 @@ class XCache extends AbstractAdapter implements
      *
      * @var array
      */
-    protected $backupAuth = [];
+    protected $backupAuth = array();
 
     /**
      * Total space in bytes
@@ -222,7 +222,7 @@ class XCache extends AbstractAdapter implements
     {
         $options   = $this->getOptions();
         $namespace = $options->getNamespace();
-        $keys      = [];
+        $keys      = array();
 
         $this->initAdminAuth();
 
@@ -426,8 +426,8 @@ class XCache extends AbstractAdapter implements
             $capabilities = new Capabilities(
                 $this,
                 $marker,
-                [
-                    'supportedDatatypes' => [
+                array(
+                    'supportedDatatypes' => array(
                         'NULL'     => false,
                         'boolean'  => true,
                         'integer'  => true,
@@ -436,12 +436,12 @@ class XCache extends AbstractAdapter implements
                         'array'    => true,
                         'object'   => 'object',
                         'resource' => false,
-                    ],
-                    'supportedMetadata' => [
+                    ),
+                    'supportedMetadata' => array(
                         'internal_key',
                         'size', 'refcount', 'hits',
                         'ctime', 'atime', 'hvalue',
-                    ],
+                    ),
                     'minTtl'             => 1,
                     'maxTtl'             => (int)ini_get('xcache.var_maxttl'),
                     'staticTtl'          => true,
@@ -451,7 +451,7 @@ class XCache extends AbstractAdapter implements
                     'maxKeyLength'       => 5182,
                     'namespaceIsPrefix'  => true,
                     'namespaceSeparator' => $this->getOptions()->getNamespaceSeparator(),
-                ]
+                )
             );
 
             // update namespace separator on change option
@@ -508,7 +508,7 @@ class XCache extends AbstractAdapter implements
     {
         unset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
         $_SERVER = $this->backupAuth + $_SERVER;
-        $this->backupAuth = [];
+        $this->backupAuth = array();
     }
 
     /**

@@ -23,7 +23,7 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
     /**
      * @var int[]
      */
-    protected $columnOptionSortOrder = [
+    protected $columnOptionSortOrder = array(
         'unsigned'      => 0,
         'zerofill'      => 1,
         'identity'      => 2,
@@ -33,7 +33,7 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
         'columnformat'  => 4,
         'format'        => 4,
         'storage'       => 5,
-    ];
+    );
 
     /**
      * @param AlterTable $subject
@@ -53,9 +53,9 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
     protected function getSqlInsertOffsets($sql)
     {
         $sqlLength   = strlen($sql);
-        $insertStart = [];
+        $insertStart = array();
 
-        foreach (['NOT NULL', 'NULL', 'DEFAULT', 'UNIQUE', 'PRIMARY', 'REFERENCES'] as $needle) {
+        foreach (array('NOT NULL', 'NULL', 'DEFAULT', 'UNIQUE', 'PRIMARY', 'REFERENCES') as $needle) {
             $insertPos = strpos($sql, ' ' . $needle);
 
             if ($insertPos !== false) {
@@ -86,14 +86,14 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
      */
     protected function processAddColumns(PlatformInterface $adapterPlatform = null)
     {
-        $sqls = [];
+        $sqls = array();
 
         foreach ($this->addColumns as $i => $column) {
             $sql           = $this->processExpression($column, $adapterPlatform);
             $insertStart   = $this->getSqlInsertOffsets($sql);
             $columnOptions = $column->getOptions();
 
-            uksort($columnOptions, [$this, 'compareColumnOptions']);
+            uksort($columnOptions, array($this, 'compareColumnOptions'));
 
             foreach ($columnOptions as $coName => $coValue) {
                 $insert = '';
@@ -143,7 +143,7 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
             }
             $sqls[$i] = $sql;
         }
-        return [$sqls];
+        return array($sqls);
     }
 
     /**
@@ -152,13 +152,13 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
      */
     protected function processChangeColumns(PlatformInterface $adapterPlatform = null)
     {
-        $sqls = [];
+        $sqls = array();
         foreach ($this->changeColumns as $name => $column) {
             $sql           = $this->processExpression($column, $adapterPlatform);
             $insertStart   = $this->getSqlInsertOffsets($sql);
             $columnOptions = $column->getOptions();
 
-            uksort($columnOptions, [$this, 'compareColumnOptions']);
+            uksort($columnOptions, array($this, 'compareColumnOptions'));
 
             foreach ($columnOptions as $coName => $coValue) {
                 $insert = '';
@@ -206,13 +206,13 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
                     }
                 }
             }
-            $sqls[] = [
+            $sqls[] = array(
                 $adapterPlatform->quoteIdentifier($name),
                 $sql
-            ];
+            );
         }
 
-        return [$sqls];
+        return array($sqls);
     }
 
     /**
@@ -222,17 +222,18 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
      */
     private function normalizeColumnOption($name)
     {
-        return strtolower(str_replace(['-', '_', ' '], '', $name));
+        return strtolower(str_replace(array('-', '_', ' '), '', $name));
     }
 
     /**
+     * @internal @private this method is only public for PHP 5.3 compatibility purposes.
      *
      * @param string $columnA
      * @param string $columnB
      *
      * @return int
      */
-    private function compareColumnOptions($columnA, $columnB)
+    public function compareColumnOptions($columnA, $columnB)
     {
         $columnA = $this->normalizeColumnOption($columnA);
         $columnA = isset($this->columnOptionSortOrder[$columnA])

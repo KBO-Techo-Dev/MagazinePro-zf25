@@ -117,7 +117,7 @@ class HydratingResultSet extends AbstractResultSet
      */
     public function toArray()
     {
-        $return = [];
+        $return = array();
         foreach ($this as $row) {
             $return[] = $this->getHydrator()->extract($row);
         }

@@ -22,7 +22,7 @@ class StorageCacheFactory implements FactoryInterface
     {
         // Configure the cache
         $config = $serviceLocator->get('Config');
-        $cacheConfig = isset($config['cache']) ? $config['cache'] : [];
+        $cacheConfig = isset($config['cache']) ? $config['cache'] : array();
         $cache = StorageFactory::factory($cacheConfig);
 
         return $cache;

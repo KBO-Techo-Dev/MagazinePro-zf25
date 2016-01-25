@@ -10,7 +10,7 @@ class for different scopes like:
 - hydrators;
 - json serializable interfaces;
 - general messaging systems;
-- string wrappers;
+- strin wrappers;
 - etc.
 
 -

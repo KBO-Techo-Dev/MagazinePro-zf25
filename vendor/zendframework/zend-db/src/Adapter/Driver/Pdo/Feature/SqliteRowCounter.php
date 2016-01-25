@@ -67,10 +67,12 @@ class SqliteRowCounter extends AbstractFeature
      */
     public function getRowCountClosure($context)
     {
-        return function () use ($context) {
+        $sqliteRowCounter = $this;
+        return function () use ($sqliteRowCounter, $context) {
+            /** @var $sqliteRowCounter SqliteRowCounter */
             return ($context instanceof Pdo\Statement)
-                ? $this->getCountForStatement($context)
-                : $this->getCountForSql($context);
+                ? $sqliteRowCounter->getCountForStatement($context)
+                : $sqliteRowCounter->getCountForSql($context);
         };
     }
 }

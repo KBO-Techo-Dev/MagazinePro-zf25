@@ -281,7 +281,7 @@ class Pop3
         }
 
         $result = $this->request('LIST', true);
-        $messages = [];
+        $messages = array();
         $line = strtok($result, "\n");
         while ($line) {
             list($no, $size) = explode(' ', trim($line));
@@ -311,7 +311,7 @@ class Pop3
         $result = $this->request('UIDL', true);
 
         $result = explode("\n", $result);
-        $messages = [];
+        $messages = array();
         foreach ($result as $line) {
             if (!$line) {
                 continue;

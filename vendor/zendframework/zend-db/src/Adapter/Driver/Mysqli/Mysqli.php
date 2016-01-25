@@ -39,9 +39,9 @@ class Mysqli implements DriverInterface, Profiler\ProfilerAwareInterface
     /**
      * @var array
      */
-    protected $options = [
+    protected $options = array(
         'buffer_results' => false
-    ];
+    );
 
     /**
      * Constructor
@@ -51,7 +51,7 @@ class Mysqli implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param null|Result $resultPrototype
      * @param array $options
      */
-    public function __construct($connection, Statement $statementPrototype = null, Result $resultPrototype = null, array $options = [])
+    public function __construct($connection, Statement $statementPrototype = null, Result $resultPrototype = null, array $options = array())
     {
         if (!$connection instanceof Connection) {
             $connection = new Connection($connection);

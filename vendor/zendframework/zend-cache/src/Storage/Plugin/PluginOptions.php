@@ -56,7 +56,7 @@ class PluginOptions extends AbstractOptions
      * - Serializer
      * @var array
      */
-    protected $serializerOptions = [];
+    protected $serializerOptions = array();
 
     /**
      * Used by:

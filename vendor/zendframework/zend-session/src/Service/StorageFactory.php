@@ -47,7 +47,7 @@ class StorageFactory implements FactoryInterface
             );
         }
         $type = $config['type'];
-        $options = isset($config['options']) ? $config['options'] : [];
+        $options = isset($config['options']) ? $config['options'] : array();
 
         try {
             $storage = Factory::factory($type, $options);

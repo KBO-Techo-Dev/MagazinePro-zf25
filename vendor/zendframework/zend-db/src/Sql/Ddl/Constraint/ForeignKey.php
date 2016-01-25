@@ -24,7 +24,7 @@ class ForeignKey extends AbstractConstraint
     /**
      * @var string[]
      */
-    protected $referenceColumn = [];
+    protected $referenceColumn = array();
 
     /**
      * @var string
@@ -39,10 +39,10 @@ class ForeignKey extends AbstractConstraint
     /**
      * @var string[]
      */
-    protected $referenceSpecification = [
+    protected $referenceSpecification = array(
         'REFERENCES %s ',
         'ON DELETE %s ON UPDATE %s'
-    ];
+    );
 
     /**
      * @param null|string       $name
@@ -150,8 +150,8 @@ class ForeignKey extends AbstractConstraint
     {
         $data         = parent::getExpressionData();
         $colCount     = count($this->referenceColumn);
-        $newSpecTypes = [self::TYPE_IDENTIFIER];
-        $values       = [$this->referenceTable];
+        $newSpecTypes = array(self::TYPE_IDENTIFIER);
+        $values       = array($this->referenceTable);
 
         $data[0][0] .= $this->referenceSpecification[0];
 

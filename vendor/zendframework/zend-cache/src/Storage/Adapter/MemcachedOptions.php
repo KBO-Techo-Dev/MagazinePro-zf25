@@ -221,11 +221,11 @@ class MemcachedOptions extends AdapterOptions
             E_USER_DEPRECATED
         );
 
-        $this->getResourceManager()->addServer($this->getResourceId(), [
+        $this->getResourceManager()->addServer($this->getResourceId(), array(
             'host'   => $host,
             'port'   => $port,
             'weight' => $weight
-        ]);
+        ));
 
         return $this;
     }

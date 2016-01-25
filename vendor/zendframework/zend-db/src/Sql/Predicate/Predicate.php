@@ -242,7 +242,7 @@ class Predicate extends PredicateSet
      * @param $parameters
      * @return $this
      */
-    public function expression($expression, $parameters = null)
+    public function expression($expression, $parameters)
     {
         $this->addPredicate(
             new Expression($expression, $parameters),

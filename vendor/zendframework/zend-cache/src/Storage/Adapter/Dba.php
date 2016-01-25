@@ -460,8 +460,8 @@ class Dba extends AbstractAdapter implements
             $capabilities = new Capabilities(
                 $this,
                 $marker,
-                [
-                    'supportedDatatypes' => [
+                array(
+                    'supportedDatatypes' => array(
                         'NULL'     => 'string',
                         'boolean'  => 'string',
                         'integer'  => 'string',
@@ -470,13 +470,13 @@ class Dba extends AbstractAdapter implements
                         'array'    => false,
                         'object'   => false,
                         'resource' => false,
-                    ],
+                    ),
                     'minTtl'             => 0,
-                    'supportedMetadata'  => [],
+                    'supportedMetadata'  => array(),
                     'maxKeyLength'       => 0, // TODO: maxKeyLength ????
                     'namespaceIsPrefix'  => true,
                     'namespaceSeparator' => $this->getOptions()->getNamespaceSeparator(),
-                ]
+                )
             );
 
             // update namespace separator on change option

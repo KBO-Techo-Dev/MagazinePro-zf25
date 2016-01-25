@@ -162,7 +162,7 @@ class WinCache extends AbstractAdapter implements
         }
 
         $prefix       = $namespace . $options->getNamespaceSeparator();
-        $internalKeys = [];
+        $internalKeys = array();
         foreach ($normalizedKeys as $normalizedKey) {
             $internalKeys[] = $prefix . $normalizedKey;
         }
@@ -171,7 +171,7 @@ class WinCache extends AbstractAdapter implements
 
         // remove namespace prefix
         $prefixL = strlen($prefix);
-        $result  = [];
+        $result  = array();
         foreach ($fetch as $internalKey => & $value) {
             $result[substr($internalKey, $prefixL)] = & $value;
         }
@@ -262,7 +262,7 @@ class WinCache extends AbstractAdapter implements
         }
 
         $prefix                = $namespace . $options->getNamespaceSeparator();
-        $internalKeyValuePairs = [];
+        $internalKeyValuePairs = array();
         foreach ($normalizedKeyValuePairs as $normalizedKey => & $value) {
             $internalKey = $prefix . $normalizedKey;
             $internalKeyValuePairs[$internalKey] = & $value;
@@ -321,7 +321,7 @@ class WinCache extends AbstractAdapter implements
         }
 
         $prefix                = $namespace . $options->getNamespaceSeparator();
-        $internalKeyValuePairs = [];
+        $internalKeyValuePairs = array();
         foreach ($normalizedKeyValuePairs as $normalizedKey => $value) {
             $internalKey = $prefix . $normalizedKey;
             $internalKeyValuePairs[$internalKey] = $value;
@@ -400,7 +400,7 @@ class WinCache extends AbstractAdapter implements
         }
 
         $prefix       = $namespace . $options->getNamespaceSeparator();
-        $internalKeys = [];
+        $internalKeys = array();
         foreach ($normalizedKeys as $normalizedKey) {
             $internalKeys[] = $prefix . $normalizedKey;
         }
@@ -467,8 +467,8 @@ class WinCache extends AbstractAdapter implements
             $capabilities = new Capabilities(
                 $this,
                 $marker,
-                [
-                    'supportedDatatypes' => [
+                array(
+                    'supportedDatatypes' => array(
                         'NULL'     => true,
                         'boolean'  => true,
                         'integer'  => true,
@@ -477,10 +477,10 @@ class WinCache extends AbstractAdapter implements
                         'array'    => true,
                         'object'   => 'object',
                         'resource' => false,
-                    ],
-                    'supportedMetadata' => [
+                    ),
+                    'supportedMetadata' => array(
                         'internal_key', 'ttl', 'hits', 'size'
-                    ],
+                    ),
                     'minTtl'             => 1,
                     'maxTtl'             => 0,
                     'staticTtl'          => true,
@@ -489,7 +489,7 @@ class WinCache extends AbstractAdapter implements
                     'expiredRead'        => false,
                     'namespaceIsPrefix'  => true,
                     'namespaceSeparator' => $this->getOptions()->getNamespaceSeparator(),
-                ]
+                )
             );
 
             // update namespace separator on change option

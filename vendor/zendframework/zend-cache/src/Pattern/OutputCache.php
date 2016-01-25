@@ -18,7 +18,7 @@ class OutputCache extends AbstractPattern
      *
      * @var array
      */
-    protected $keyStack = [];
+    protected $keyStack = array();
 
     /**
      * Set options

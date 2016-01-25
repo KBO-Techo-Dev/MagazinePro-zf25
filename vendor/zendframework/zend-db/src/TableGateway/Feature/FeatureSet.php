@@ -21,14 +21,14 @@ class FeatureSet
     /**
      * @var AbstractFeature[]
      */
-    protected $features = [];
+    protected $features = array();
 
     /**
      * @var array
      */
-    protected $magicSpecifications = [];
+    protected $magicSpecifications = array();
 
-    public function __construct(array $features = [])
+    public function __construct(array $features = array())
     {
         if ($features) {
             $this->addFeatures($features);
@@ -77,7 +77,7 @@ class FeatureSet
     {
         foreach ($this->features as $feature) {
             if (method_exists($feature, $method)) {
-                $return = call_user_func_array([$feature, $method], $args);
+                $return = call_user_func_array(array($feature, $method), $args);
                 if ($return === self::APPLY_HALT) {
                     break;
                 }

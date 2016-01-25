@@ -38,7 +38,7 @@ class RemoteAddr implements SessionValidator
      *
      * @var array
      */
-    protected static $trustedProxies = [];
+    protected static $trustedProxies = array();
 
     /**
      * HTTP header to introspect for proxies

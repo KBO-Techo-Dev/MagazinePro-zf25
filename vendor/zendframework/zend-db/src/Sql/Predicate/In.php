@@ -99,7 +99,7 @@ class In extends AbstractExpression implements PredicateInterface
     {
         $identifier = $this->getIdentifier();
         $values = $this->getValueSet();
-        $replacements = [];
+        $replacements = array();
 
         if (is_array($identifier)) {
             $identifierSpecFragment = '(' . implode(', ', array_fill(0, count($identifier), '%s')) . ')';
@@ -108,13 +108,13 @@ class In extends AbstractExpression implements PredicateInterface
         } else {
             $identifierSpecFragment = '%s';
             $replacements[] = $identifier;
-            $types = [self::TYPE_IDENTIFIER];
+            $types = array(self::TYPE_IDENTIFIER);
         }
 
         if ($values instanceof Select) {
             $specification = vsprintf(
                 $this->specification,
-                [$identifierSpecFragment, '%s']
+                array($identifierSpecFragment, '%s')
             );
             $replacements[] = $values;
             $types[] = self::TYPE_VALUE;
@@ -124,14 +124,14 @@ class In extends AbstractExpression implements PredicateInterface
             }
             $specification = vsprintf(
                 $this->specification,
-                [$identifierSpecFragment, '(' . implode(', ', array_fill(0, count($values), '%s')) . ')']
+                array($identifierSpecFragment, '(' . implode(', ', array_fill(0, count($values), '%s')) . ')')
             );
         }
 
-        return [[
+        return array(array(
             $specification,
             $replacements,
             $types,
-        ]];
+        ));
     }
 }
