@@ -81,7 +81,7 @@ class Session extends AbstractAdapter implements
         if ($cntr->offsetExists($ns)) {
             $keys = array_keys($cntr->offsetGet($ns));
         } else {
-            $keys = [];
+            $keys = array();
         }
 
         return new KeyListIterator($this, $keys);
@@ -96,7 +96,7 @@ class Session extends AbstractAdapter implements
      */
     public function flush()
     {
-        $this->getSessionContainer()->exchangeArray([]);
+        $this->getSessionContainer()->exchangeArray(array());
         return true;
     }
 
@@ -178,11 +178,11 @@ class Session extends AbstractAdapter implements
         $ns   = $this->getOptions()->getNamespace();
 
         if (!$cntr->offsetExists($ns)) {
-            return [];
+            return array();
         }
 
         $data   = $cntr->offsetGet($ns);
-        $result = [];
+        $result = array();
         foreach ($normalizedKeys as $normalizedKey) {
             if (array_key_exists($normalizedKey, $data)) {
                 $result[$normalizedKey] = $data[$normalizedKey];
@@ -223,11 +223,11 @@ class Session extends AbstractAdapter implements
         $ns   = $this->getOptions()->getNamespace();
 
         if (!$cntr->offsetExists($ns)) {
-            return [];
+            return array();
         }
 
         $data   = $cntr->offsetGet($ns);
-        $result = [];
+        $result = array();
         foreach ($normalizedKeys as $normalizedKey) {
             if (array_key_exists($normalizedKey, $data)) {
                 $result[] = $normalizedKey;
@@ -250,7 +250,7 @@ class Session extends AbstractAdapter implements
      */
     protected function internalGetMetadata(& $normalizedKey)
     {
-        return $this->internalHasItem($normalizedKey) ? [] : false;
+        return $this->internalHasItem($normalizedKey) ? array() : false;
     }
 
     /* writing */
@@ -267,7 +267,7 @@ class Session extends AbstractAdapter implements
     {
         $cntr = $this->getSessionContainer();
         $ns   = $this->getOptions()->getNamespace();
-        $data = $cntr->offsetExists($ns) ? $cntr->offsetGet($ns) : [];
+        $data = $cntr->offsetExists($ns) ? $cntr->offsetGet($ns) : array();
         $data[$normalizedKey] = $value;
         $cntr->offsetSet($ns, $data);
         return true;
@@ -292,7 +292,7 @@ class Session extends AbstractAdapter implements
         }
         $cntr->offsetSet($ns, $data);
 
-        return [];
+        return array();
     }
 
     /**
@@ -317,7 +317,7 @@ class Session extends AbstractAdapter implements
 
             $data[$normalizedKey] = $value;
         } else {
-            $data = [$normalizedKey => $value];
+            $data = array($normalizedKey => $value);
         }
 
         $cntr->offsetSet($ns, $data);
@@ -336,7 +336,7 @@ class Session extends AbstractAdapter implements
         $cntr = $this->getSessionContainer();
         $ns   = $this->getOptions()->getNamespace();
 
-        $result = [];
+        $result = array();
         if ($cntr->offsetExists($ns)) {
             $data = $cntr->offsetGet($ns);
 
@@ -398,7 +398,7 @@ class Session extends AbstractAdapter implements
         }
 
         $data   = $cntr->offsetGet($ns);
-        $result = [];
+        $result = array();
         foreach ($normalizedKeyValuePairs as $normalizedKey => $value) {
             if (!array_key_exists($normalizedKey, $data)) {
                 $result[] = $normalizedKey;
@@ -459,7 +459,7 @@ class Session extends AbstractAdapter implements
         if ($cntr->offsetExists($ns)) {
             $data = $cntr->offsetGet($ns);
         } else {
-            $data = [];
+            $data = array();
         }
 
         if (array_key_exists($normalizedKey, $data)) {
@@ -491,7 +491,7 @@ class Session extends AbstractAdapter implements
         if ($cntr->offsetExists($ns)) {
             $data = $cntr->offsetGet($ns);
         } else {
-            $data = [];
+            $data = array();
         }
 
         if (array_key_exists($normalizedKey, $data)) {
@@ -521,8 +521,8 @@ class Session extends AbstractAdapter implements
             $this->capabilities = new Capabilities(
                 $this,
                 $this->capabilityMarker,
-                [
-                    'supportedDatatypes' => [
+                array(
+                    'supportedDatatypes' => array(
                         'NULL'     => true,
                         'boolean'  => true,
                         'integer'  => true,
@@ -531,13 +531,13 @@ class Session extends AbstractAdapter implements
                         'array'    => 'array',
                         'object'   => 'object',
                         'resource' => false,
-                    ],
-                    'supportedMetadata'  => [],
+                    ),
+                    'supportedMetadata'  => array(),
                     'minTtl'             => 0,
                     'maxKeyLength'       => 0,
                     'namespaceIsPrefix'  => false,
                     'namespaceSeparator' => '',
-                ]
+                )
             );
         }
 

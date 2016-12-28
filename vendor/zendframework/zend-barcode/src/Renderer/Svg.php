@@ -126,9 +126,9 @@ class Svg extends AbstractRenderer
         $barcodeHeight = $this->barcode->getHeight(true);
 
         $backgroundColor = $this->barcode->getBackgroundColor();
-        $imageBackgroundColor = 'rgb(' . implode(', ', [($backgroundColor & 0xFF0000) >> 16,
+        $imageBackgroundColor = 'rgb(' . implode(', ', array(($backgroundColor & 0xFF0000) >> 16,
                                                              ($backgroundColor & 0x00FF00) >> 8,
-                                                             ($backgroundColor & 0x0000FF)]) . ')';
+                                                             ($backgroundColor & 0x0000FF))) . ')';
 
         $width = $barcodeWidth;
         $height = $barcodeHeight;
@@ -149,7 +149,7 @@ class Svg extends AbstractRenderer
 
             $this->appendRootElement(
                 'title',
-                [],
+                array(),
                 "Barcode " . strtoupper($this->barcode->getType()) . " " . $this->barcode->getText()
             );
         } else {
@@ -159,11 +159,11 @@ class Svg extends AbstractRenderer
         }
         $this->adjustPosition($height, $width);
 
-        $rect = ['x' => $this->leftOffset,
+        $rect = array('x' => $this->leftOffset,
             'y' => $this->topOffset,
             'width' => ($this->leftOffset + $barcodeWidth - 1),
             'height' => ($this->topOffset + $barcodeHeight - 1),
-            'fill' => $imageBackgroundColor];
+            'fill' => $imageBackgroundColor);
 
         if ($this->transparentBackground) {
             $rect['fill-opacity'] = 0;
@@ -186,7 +186,7 @@ class Svg extends AbstractRenderer
      * @param array $attributes
      * @param string $textContent
      */
-    protected function appendRootElement($tagName, $attributes = [], $textContent = null)
+    protected function appendRootElement($tagName, $attributes = array(), $textContent = null)
     {
         $newElement = $this->createElement($tagName, $attributes, $textContent);
         $this->rootElement->appendChild($newElement);
@@ -200,7 +200,7 @@ class Svg extends AbstractRenderer
      * @param string $textContent
      * @return DOMElement
      */
-    protected function createElement($tagName, $attributes = [], $textContent = null)
+    protected function createElement($tagName, $attributes = array(), $textContent = null)
     {
         $element = $this->resource->createElement($tagName);
         foreach ($attributes as $k => $v) {
@@ -304,11 +304,11 @@ class Svg extends AbstractRenderer
      */
     protected function drawPolygon($points, $color, $filled = true)
     {
-        $color = 'rgb(' . implode(', ', [($color & 0xFF0000) >> 16,
+        $color = 'rgb(' . implode(', ', array(($color & 0xFF0000) >> 16,
                                               ($color & 0x00FF00) >> 8,
-                                              ($color & 0x0000FF)]) . ')';
+                                              ($color & 0x0000FF))) . ')';
         $orientation = $this->getBarcode()->getOrientation();
-        $newPoints = [
+        $newPoints = array(
             $points[0][0] + $this->leftOffset,
             $points[0][1] + $this->topOffset,
             $points[1][0] + $this->leftOffset,
@@ -317,9 +317,9 @@ class Svg extends AbstractRenderer
             $points[2][1] + $this->topOffset - sin($orientation),
             $points[3][0] + $this->leftOffset + cos(-$orientation),
             $points[3][1] + $this->topOffset - sin($orientation),
-        ];
+        );
         $newPoints = implode(' ', $newPoints);
-        $attributes = [];
+        $attributes = array();
         $attributes['points'] = $newPoints;
         $attributes['fill'] = $color;
 
@@ -348,10 +348,10 @@ class Svg extends AbstractRenderer
      */
     protected function drawText($text, $size, $position, $font, $color, $alignment = 'center', $orientation = 0)
     {
-        $color = 'rgb(' . implode(', ', [($color & 0xFF0000) >> 16,
+        $color = 'rgb(' . implode(', ', array(($color & 0xFF0000) >> 16,
                                               ($color & 0x00FF00) >> 8,
-                                              ($color & 0x0000FF)]) . ')';
-        $attributes = [];
+                                              ($color & 0x0000FF))) . ')';
+        $attributes = array();
         $attributes['x'] = $position[0] + $this->leftOffset;
         $attributes['y'] = $position[1] + $this->topOffset;
         //$attributes['font-family'] = $font;

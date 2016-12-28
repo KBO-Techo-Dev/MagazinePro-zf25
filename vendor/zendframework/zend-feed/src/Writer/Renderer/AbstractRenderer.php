@@ -21,7 +21,7 @@ class AbstractRenderer
      * Extensions
      * @var array
      */
-    protected $extensions = [];
+    protected $extensions = array();
 
     /**
      * @var Writer\AbstractFeed
@@ -41,7 +41,7 @@ class AbstractRenderer
     /**
      * @var array
      */
-    protected $exceptions = [];
+    protected $exceptions = array();
 
     /**
      * Encoding of all text values

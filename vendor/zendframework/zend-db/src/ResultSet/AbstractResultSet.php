@@ -58,7 +58,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
     {
         // reset buffering
         if (is_array($this->buffer)) {
-            $this->buffer = [];
+            $this->buffer = array();
         }
 
         if ($dataSource instanceof ResultInterface) {
@@ -102,7 +102,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
         if ($this->buffer === -2) {
             throw new Exception\RuntimeException('Buffering must be enabled before iteration is started');
         } elseif ($this->buffer === null) {
-            $this->buffer = [];
+            $this->buffer = array();
             if ($this->dataSource instanceof ResultInterface) {
                 $this->dataSource->rewind();
             }
@@ -263,7 +263,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      */
     public function toArray()
     {
-        $return = [];
+        $return = array();
         foreach ($this as $row) {
             if (is_array($row)) {
                 $return[] = $row;

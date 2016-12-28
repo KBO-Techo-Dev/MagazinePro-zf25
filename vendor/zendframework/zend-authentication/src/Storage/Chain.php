@@ -51,7 +51,7 @@ class Chain implements StorageInterface
      */
     public function isEmpty()
     {
-        $storageWithHigherPriority = [];
+        $storageWithHigherPriority = array();
 
         // Loop invariant: $storageWithHigherPriority contains all storage with higher priorty
         // than the current one.

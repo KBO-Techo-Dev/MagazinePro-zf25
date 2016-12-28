@@ -99,8 +99,8 @@ abstract class Barcode
     public static function factory(
         $barcode,
         $renderer = 'image',
-        $barcodeConfig = [],
-        $rendererConfig = [],
+        $barcodeConfig = array(),
+        $rendererConfig = array(),
         $automaticRenderError = true
     ) {
         /*
@@ -130,8 +130,8 @@ abstract class Barcode
             $renderer = static::makeRenderer($renderer, $rendererConfig);
         } catch (Exception\ExceptionInterface $e) {
             if ($automaticRenderError && !($e instanceof Exception\RendererCreationException)) {
-                $barcode  = static::makeBarcode('error', ['text' => $e->getMessage()]);
-                $renderer = static::makeRenderer($renderer, []);
+                $barcode  = static::makeBarcode('error', array('text' => $e->getMessage()));
+                $renderer = static::makeRenderer($renderer, array());
             } else {
                 throw $e;
             }
@@ -149,7 +149,7 @@ abstract class Barcode
      * @throws Exception\InvalidArgumentException
      * @return Object\ObjectInterface
      */
-    public static function makeBarcode($barcode, $barcodeConfig = [])
+    public static function makeBarcode($barcode, $barcodeConfig = array())
     {
         if ($barcode instanceof Object\ObjectInterface) {
             return $barcode;
@@ -203,7 +203,7 @@ abstract class Barcode
      * @throws Exception\RendererCreationException
      * @return Renderer\RendererInterface
      */
-    public static function makeRenderer($renderer = 'image', $rendererConfig = [])
+    public static function makeRenderer($renderer = 'image', $rendererConfig = array())
     {
         if ($renderer instanceof Renderer\RendererInterface) {
             return $renderer;
@@ -258,8 +258,8 @@ abstract class Barcode
     public static function render(
         $barcode,
         $renderer,
-        $barcodeConfig = [],
-        $rendererConfig = []
+        $barcodeConfig = array(),
+        $rendererConfig = array()
     ) {
         static::factory($barcode, $renderer, $barcodeConfig, $rendererConfig)->render();
     }
@@ -276,8 +276,8 @@ abstract class Barcode
     public static function draw(
         $barcode,
         $renderer,
-        $barcodeConfig = [],
-        $rendererConfig = []
+        $barcodeConfig = array(),
+        $rendererConfig = array()
     ) {
         return static::factory($barcode, $renderer, $barcodeConfig, $rendererConfig)->draw();
     }

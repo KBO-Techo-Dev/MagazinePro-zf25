@@ -27,14 +27,14 @@ class Combine extends AbstractPreparableSql
     /**
      * @var string[]
      */
-    protected $specifications = [
+    protected $specifications = array(
         self::COMBINE => '%1$s (%2$s) ',
-    ];
+    );
 
     /**
      * @var Select[][]
      */
-    private $combine = [];
+    private $combine = array();
 
     /**
      * @param Select|array|null $select
@@ -62,7 +62,7 @@ class Combine extends AbstractPreparableSql
         if (is_array($select)) {
             foreach ($select as $combine) {
                 if ($combine instanceof Select) {
-                    $combine = [$combine];
+                    $combine = array($combine);
                 }
 
                 $this->combine(
@@ -81,11 +81,11 @@ class Combine extends AbstractPreparableSql
             ));
         }
 
-        $this->combine[] = [
+        $this->combine[] = array(
             'select' => $select,
             'type' => $type,
             'modifier' => $modifier
-        ];
+        );
         return $this;
     }
 
@@ -166,7 +166,7 @@ class Combine extends AbstractPreparableSql
             return $this;
         }
 
-        $allColumns = [];
+        $allColumns = array();
         foreach ($this->combine as $combine) {
             $allColumns = array_merge(
                 $allColumns,
@@ -176,7 +176,7 @@ class Combine extends AbstractPreparableSql
 
         foreach ($this->combine as $combine) {
             $combineColumns = $combine['select']->getRawState(self::COLUMNS);
-            $aligned = [];
+            $aligned = array();
             foreach ($allColumns as $alias => $column) {
                 $aligned[$alias] = isset($combineColumns[$alias])
                     ? $combineColumns[$alias]
@@ -196,12 +196,12 @@ class Combine extends AbstractPreparableSql
      */
     public function getRawState($key = null)
     {
-        $rawState = [
+        $rawState = array(
             self::COMBINE => $this->combine,
             self::COLUMNS => $this->combine
                                 ? $this->combine[0]['select']->getRawState(self::COLUMNS)
-                                : [],
-        ];
+                                : array(),
+        );
         return (isset($key) && array_key_exists($key, $rawState)) ? $rawState[$key] : $rawState;
     }
 }

@@ -49,7 +49,7 @@ class Entry extends Extension\AbstractEntry
         }
 
         $stringParade = $this->getData($name);
-        $hitParade    = [];
+        $hitParade    = array();
 
         if (!empty($stringParade)) {
             $stringParade = explode(',', $stringParade);

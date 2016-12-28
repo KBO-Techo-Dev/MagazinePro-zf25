@@ -35,7 +35,7 @@ class ZendServerDisk extends AbstractZendServer implements
      * @param  null|array|\Traversable|AdapterOptions $options
      * @throws Exception\ExtensionNotLoadedException
      */
-    public function __construct($options = [])
+    public function __construct($options = array())
     {
         if (!function_exists('zend_disk_cache_store')) {
             throw new Exception\ExtensionNotLoadedException("Missing 'zend_disk_cache_*' functions");

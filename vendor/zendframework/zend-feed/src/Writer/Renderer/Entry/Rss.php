@@ -222,7 +222,7 @@ class Rss extends Renderer\AbstractRenderer implements Renderer\RendererInterfac
                 return;
             }
         }
-        if ((int) $data['length'] < 0 || !ctype_digit((string) $data['length'])) {
+        if (isset($data['length']) && (int) $data['length'] <= 0) {
             $exception = new Writer\Exception\InvalidArgumentException('Enclosure "length" must be an integer'
             . ' indicating the content\'s length in bytes');
             if (!$this->ignoreExceptions) {

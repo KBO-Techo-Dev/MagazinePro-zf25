@@ -64,13 +64,13 @@ abstract class AbstractZendServer extends AbstractAdapter
         }
 
         $prefix       = $namespace . self::NAMESPACE_SEPARATOR;
-        $internalKeys = [];
+        $internalKeys = array();
         foreach ($normalizedKeys as $normalizedKey) {
             $internalKeys[] = $prefix . $normalizedKey;
         }
 
         $fetch   = $this->zdcFetchMulti($internalKeys);
-        $result  = [];
+        $result  = array();
         $prefixL = strlen($prefix);
         foreach ($fetch as $k => & $v) {
             $result[substr($k, $prefixL)] = $v;
@@ -108,13 +108,13 @@ abstract class AbstractZendServer extends AbstractAdapter
         }
 
         $prefix       = $namespace . self::NAMESPACE_SEPARATOR;
-        $internalKeys = [];
+        $internalKeys = array();
         foreach ($normalizedKeys as $normalizedKey) {
             $internalKeys[] = $prefix . $normalizedKey;
         }
 
         $fetch   = $this->zdcFetchMulti($internalKeys);
-        $result  = [];
+        $result  = array();
         $prefixL = strlen($prefix);
         foreach ($fetch as $internalKey => & $value) {
             $result[] = substr($internalKey, $prefixL);
@@ -138,20 +138,20 @@ abstract class AbstractZendServer extends AbstractAdapter
         $namespace = $this->getOptions()->getNamespace();
         if ($namespace === '') {
             $result = $this->zdcFetchMulti($normalizedKeys);
-            return array_fill_keys(array_keys($result), []);
+            return array_fill_keys(array_keys($result), array());
         }
 
         $prefix       = $namespace . self::NAMESPACE_SEPARATOR;
-        $internalKeys = [];
+        $internalKeys = array();
         foreach ($normalizedKeys as $normalizedKey) {
             $internalKeys[] = $prefix . $normalizedKey;
         }
 
         $fetch   = $this->zdcFetchMulti($internalKeys);
-        $result  = [];
+        $result  = array();
         $prefixL = strlen($prefix);
         foreach ($fetch as $internalKey => $value) {
-            $result[substr($internalKey, $prefixL)] = [];
+            $result[substr($internalKey, $prefixL)] = array();
         }
 
         return $result;
@@ -204,8 +204,8 @@ abstract class AbstractZendServer extends AbstractAdapter
             $this->capabilities     = new Capabilities(
                 $this,
                 $this->capabilityMarker,
-                [
-                    'supportedDatatypes' => [
+                array(
+                    'supportedDatatypes' => array(
                         'NULL'     => true,
                         'boolean'  => true,
                         'integer'  => true,
@@ -214,8 +214,8 @@ abstract class AbstractZendServer extends AbstractAdapter
                         'array'    => true,
                         'object'   => 'object',
                         'resource' => false,
-                    ],
-                    'supportedMetadata'  => [],
+                    ),
+                    'supportedMetadata'  => array(),
                     'maxTtl'             => 0,
                     'staticTtl'          => true,
                     'ttlPrecision'       => 1,
@@ -224,7 +224,7 @@ abstract class AbstractZendServer extends AbstractAdapter
                     'maxKeyLength'       => 0,
                     'namespaceIsPrefix'  => true,
                     'namespaceSeparator' => self::NAMESPACE_SEPARATOR,
-                ]
+                )
             );
         }
 

@@ -23,11 +23,11 @@ abstract class AbstractTimestampColumn extends Column
     {
         $spec = $this->specification;
 
-        $params   = [];
+        $params   = array();
         $params[] = $this->name;
         $params[] = $this->type;
 
-        $types = [self::TYPE_IDENTIFIER, self::TYPE_LITERAL];
+        $types = array(self::TYPE_IDENTIFIER, self::TYPE_LITERAL);
 
         if (!$this->isNullable) {
             $spec .= ' NOT NULL';
@@ -47,11 +47,11 @@ abstract class AbstractTimestampColumn extends Column
             $types[]  = self::TYPE_LITERAL;
         }
 
-        $data = [[
+        $data = array(array(
             $spec,
             $params,
             $types,
-        ]];
+        ));
 
         foreach ($this->constraints as $constraint) {
             $data[] = ' ';

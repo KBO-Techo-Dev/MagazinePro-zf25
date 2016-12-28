@@ -124,7 +124,7 @@ class BlackHole implements
      */
     public function getItems(array $keys)
     {
-        return [];
+        return array();
     }
 
     /**
@@ -146,7 +146,7 @@ class BlackHole implements
      */
     public function hasItems(array $keys)
     {
-        return [];
+        return array();
     }
 
     /**
@@ -168,7 +168,7 @@ class BlackHole implements
      */
     public function getMetadatas(array $keys)
     {
-        return [];
+        return array();
     }
 
     /**
@@ -320,7 +320,7 @@ class BlackHole implements
      */
     public function incrementItems(array $keyValuePairs)
     {
-        return [];
+        return array();
     }
 
     /**
@@ -343,7 +343,7 @@ class BlackHole implements
      */
     public function decrementItems(array $keyValuePairs)
     {
-        return [];
+        return array();
     }
 
     /**
@@ -432,7 +432,7 @@ class BlackHole implements
      */
     public function getIterator()
     {
-        return new KeyListIterator($this, []);
+        return new KeyListIterator($this, array());
     }
 
     /* OptimizableInterface */

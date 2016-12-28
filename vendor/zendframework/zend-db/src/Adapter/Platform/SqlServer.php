@@ -18,7 +18,7 @@ class SqlServer extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    protected $quoteIdentifier = ['[',']'];
+    protected $quoteIdentifier = array('[',']');
 
     /**
      * {@inheritDoc}
@@ -49,8 +49,8 @@ class SqlServer extends AbstractPlatform
     public function setDriver($driver)
     {
         // handle Zend\Db drivers
-        if (($driver instanceof Pdo\Pdo && in_array($driver->getDatabasePlatformName(), ['SqlServer', 'Dblib']))
-            || (($driver instanceof \PDO && in_array($driver->getAttribute(\PDO::ATTR_DRIVER_NAME), ['sqlsrv', 'dblib'])))
+        if (($driver instanceof Pdo\Pdo && in_array($driver->getDatabasePlatformName(), array('SqlServer', 'Dblib')))
+            || (($driver instanceof \PDO && in_array($driver->getAttribute(\PDO::ATTR_DRIVER_NAME), array('sqlsrv', 'dblib'))))
         ) {
             $this->resource = $driver;
             return $this;

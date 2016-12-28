@@ -31,12 +31,12 @@ class Column implements ColumnInterface
     /**
      * @var array
      */
-    protected $options = [];
+    protected $options = array();
 
     /**
      * @var ConstraintInterface[]
      */
-    protected $constraints = [];
+    protected $constraints = array();
 
     /**
      * @var string
@@ -54,7 +54,7 @@ class Column implements ColumnInterface
      * @param mixed|null  $default
      * @param mixed[]     $options
      */
-    public function __construct($name = null, $nullable = false, $default = null, array $options = [])
+    public function __construct($name = null, $nullable = false, $default = null, array $options = array())
     {
         $this->setName($name);
         $this->setNullable($nullable);
@@ -164,11 +164,11 @@ class Column implements ColumnInterface
     {
         $spec = $this->specification;
 
-        $params   = [];
+        $params   = array();
         $params[] = $this->name;
         $params[] = $this->type;
 
-        $types = [self::TYPE_IDENTIFIER, self::TYPE_LITERAL];
+        $types = array(self::TYPE_IDENTIFIER, self::TYPE_LITERAL);
 
         if (!$this->isNullable) {
             $spec .= ' NOT NULL';
@@ -180,11 +180,11 @@ class Column implements ColumnInterface
             $types[]  = self::TYPE_VALUE;
         }
 
-        $data = [[
+        $data = array(array(
             $spec,
             $params,
             $types,
-        ]];
+        ));
 
         foreach ($this->constraints as $constraint) {
             $data[] = ' ';

@@ -19,7 +19,7 @@ class RowGatewayFeature extends AbstractFeature
     /**
      * @var array
      */
-    protected $constructorArguments = [];
+    protected $constructorArguments = array();
 
     /**
      * @param null $primaryKey

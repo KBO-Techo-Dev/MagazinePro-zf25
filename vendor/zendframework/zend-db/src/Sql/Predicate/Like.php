@@ -103,12 +103,12 @@ class Like extends AbstractExpression implements PredicateInterface
     {
         list($values[], $types[]) = $this->normalizeArgument($this->identifier, self::TYPE_IDENTIFIER);
         list($values[], $types[]) = $this->normalizeArgument($this->like, self::TYPE_VALUE);
-        return [
-            [
+        return array(
+            array(
                 $this->specification,
                 $values,
                 $types,
-            ]
-        ];
+            )
+        );
     }
 }

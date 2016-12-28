@@ -40,7 +40,7 @@ class SessionStorage extends ArrayStorage
                 $input = (array) $input;
             }
         } elseif (null === $input) {
-            $input = [];
+            $input = array();
         }
 
         parent::__construct($input, $flags, $iteratorClass);

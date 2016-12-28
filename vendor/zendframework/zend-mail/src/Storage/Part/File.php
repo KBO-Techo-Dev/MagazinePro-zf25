@@ -14,8 +14,8 @@ use Zend\Mail\Storage\Part;
 
 class File extends Part
 {
-    protected $contentPos = [];
-    protected $partPos = [];
+    protected $contentPos = array();
+    protected $partPos = array();
     protected $fh;
 
     /**
@@ -76,7 +76,7 @@ class File extends Part
             throw new Exception\RuntimeException('no boundary found in content type to split message');
         }
 
-        $part = [];
+        $part = array();
         $pos = $this->contentPos[0];
         fseek($this->fh, $pos);
         while (!feof($this->fh) && ($endPos === null || $pos < $endPos)) {
@@ -98,7 +98,7 @@ class File extends Part
                     $part[1] = $lastPos;
                     $this->partPos[] = $part;
                 }
-                $part = [$pos];
+                $part = array($pos);
             } elseif ($line == '--' . $boundary . '--') {
                 $part[1] = $lastPos;
                 $this->partPos[] = $part;
@@ -152,7 +152,7 @@ class File extends Part
             throw new Exception\RuntimeException('part not found');
         }
 
-        return new static(['file' => $this->fh, 'startPos' => $this->partPos[$num][0],
-                              'endPos' => $this->partPos[$num][1]]);
+        return new static(array('file' => $this->fh, 'startPos' => $this->partPos[$num][0],
+                              'endPos' => $this->partPos[$num][1]));
     }
 }

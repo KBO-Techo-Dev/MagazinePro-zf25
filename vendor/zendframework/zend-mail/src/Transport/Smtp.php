@@ -304,7 +304,7 @@ class Smtp implements TransportInterface
             return (array) $this->getEnvelope()->getTo();
         }
 
-        $recipients = [];
+        $recipients = array();
         foreach ($message->getTo() as $address) {
             $recipients[] = $address->getEmail();
         }

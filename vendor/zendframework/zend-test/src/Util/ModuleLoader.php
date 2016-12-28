@@ -27,12 +27,12 @@ class ModuleLoader
     {
         if (!isset($configuration['modules'])) {
             $modules = $configuration;
-            $configuration = [
-                'module_listener_options' => [
-                    'module_paths' => [],
-                ],
-                'modules' => [],
-            ];
+            $configuration = array(
+                'module_listener_options' => array(
+                    'module_paths' => array(),
+                ),
+                'modules' => array(),
+            );
             foreach ($modules as $key => $module) {
                 if (is_numeric($key)) {
                     $configuration['modules'][] = $module;
@@ -43,7 +43,7 @@ class ModuleLoader
             }
         }
 
-        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
+        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
         $this->serviceManager = new ServiceManager(new Service\ServiceManagerConfig($smConfig));
         $this->serviceManager->setService('ApplicationConfig', $configuration);
         $this->serviceManager->get('ModuleManager')->loadModules();

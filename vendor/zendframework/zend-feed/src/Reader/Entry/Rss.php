@@ -45,14 +45,14 @@ class Rss extends AbstractEntry implements EntryInterface
         $this->xpathQueryRdf = '//rss:item[' . ($this->entryKey+1) . ']';
 
         $manager    = Reader\Reader::getExtensionManager();
-        $extensions = [
+        $extensions = array(
             'DublinCore\Entry',
             'Content\Entry',
             'Atom\Entry',
             'WellFormedWeb\Entry',
             'Slash\Entry',
             'Thread\Entry',
-        ];
+        );
         foreach ($extensions as $name) {
             $extension = $manager->get($name);
             $extension->setEntryElement($entry);
@@ -90,13 +90,13 @@ class Rss extends AbstractEntry implements EntryInterface
             return $this->data['authors'];
         }
 
-        $authors = [];
+        $authors = array();
         $authorsDc = $this->getExtension('DublinCore')->getAuthors();
         if (!empty($authorsDc)) {
             foreach ($authorsDc as $author) {
-                $authors[] = [
+                $authors[] = array(
                     'name' => $author['name']
-                ];
+                );
             }
         }
 
@@ -109,7 +109,7 @@ class Rss extends AbstractEntry implements EntryInterface
         if ($list->length) {
             foreach ($list as $author) {
                 $string = trim($author->nodeValue);
-                $data = [];
+                $data = array();
                 // Pretty rough parsing - but it's a catchall
                 if (preg_match("/^.*@[^ ]*/", $string, $matches)) {
                     $data['email'] = trim($matches[0]);
@@ -197,8 +197,8 @@ class Rss extends AbstractEntry implements EntryInterface
                 if ($dateModifiedParsed) {
                     $date = new DateTime('@' . $dateModifiedParsed);
                 } else {
-                    $dateStandards = [DateTime::RSS, DateTime::RFC822,
-                                           DateTime::RFC2822, null];
+                    $dateStandards = array(DateTime::RSS, DateTime::RFC822,
+                                           DateTime::RFC2822, null);
                     foreach ($dateStandards as $standard) {
                         try {
                             $date = date_create_from_format($standard, $dateModified);
@@ -377,7 +377,7 @@ class Rss extends AbstractEntry implements EntryInterface
             return $this->data['links'];
         }
 
-        $links = [];
+        $links = array();
 
         if ($this->getType() !== Reader\Reader::TYPE_RSS_10 &&
             $this->getType() !== Reader\Reader::TYPE_RSS_090) {
@@ -420,11 +420,11 @@ class Rss extends AbstractEntry implements EntryInterface
         if ($list->length) {
             $categoryCollection = new Reader\Collection\Category;
             foreach ($list as $category) {
-                $categoryCollection[] = [
+                $categoryCollection[] = array(
                     'term' => $category->nodeValue,
                     'scheme' => $category->getAttribute('domain'),
                     'label' => $category->nodeValue,
-                ];
+                );
             }
         } else {
             $categoryCollection = $this->getExtension('DublinCore')->getCategories();

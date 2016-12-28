@@ -59,11 +59,11 @@ class Uri
     /**
      * Valid schemes
      */
-    protected $validSchemes = [
+    protected $validSchemes = array(
         'http',
         'https',
         'file',
-    ];
+    );
 
     /**
      * @param  string $uri

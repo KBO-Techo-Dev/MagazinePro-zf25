@@ -41,7 +41,7 @@ class ConstraintObject
      *
      * @var string[]
      */
-    protected $columns = [];
+    protected $columns = array();
 
     /**
      *
